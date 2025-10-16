@@ -105,123 +105,207 @@ CREATE TABLE Table_Name (
 
 **Question 1**
 --
--- Paste Question 1 here
+Write a SQL query to add a new column MobileNumber of type NUMBER and a new column Address of type VARCHAR(100) to the Student_details table.
 
 ```sql
--- Paste your SQL code below for Question 1
+ALTER TABLE Student_details
+ADD COLUMN MobileNumber NUMBER;
+
+ALTER TABLE Student_details
+ADD COLUMN Address VARCHAR(100);
+
 ```
 
 **Output:**
+<img width="1220" height="477" alt="image" src="https://github.com/user-attachments/assets/52ee40b9-6cc3-41b9-8b9e-43d5cdf08033" />
 
-![Output1](output.png)
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+Create a table named Orders with the following columns:
+
+OrderID as INTEGER
+OrderDate as TEXT
+CustomerID as INTEGER
 
 ```sql
--- Paste your SQL code below for Question 2
+CREATE TABLE Orders(
+    OrderID  INTEGER,
+    OrderDate  TEXT,
+    CustomerID  INTEGER
+);
+
 ```
 
 **Output:**
 
-![Output2](output.png)
+<img width="1224" height="460" alt="image" src="https://github.com/user-attachments/assets/179a4a7c-2e03-46c3-a095-40aad1c760e2" />
+
 
 **Question 3**
 ---
--- Paste Question 3 here
+Write a SQL query to Add a new column Country as text in the Student_details table.
 
 ```sql
--- Paste your SQL code below for Question 3
+ALTER TABLE  Student_details
+ADD COLUMN Country TEXT;
 ```
 
 **Output:**
+<img width="1225" height="448" alt="image" src="https://github.com/user-attachments/assets/2a229650-620e-4080-b408-5d44cbeecf1b" />
 
-![Output3](output.png)
 
 **Question 4**
 ---
--- Paste Question 4 here
+Insert a student with RollNo 201, Name David Lee, Gender M, Subject Physics, and MARKS 92 into the Student_details table.
 
 ```sql
--- Paste your SQL code below for Question 4
+INSERT INTO  Student_details(RollNo,Name,Gender,Subject,MARKS)
+VALUES (201,'David Lee','M','Physics',92);
 ```
 
 **Output:**
 
-![Output4](output.png)
+<img width="1219" height="330" alt="image" src="https://github.com/user-attachments/assets/7c2c2185-50f7-4b94-88a8-7cf62cac2cd2" />
+
 
 **Question 5**
 ---
--- Paste Question 5 here
+Create a new table named item with the following specifications and constraints:
+item_id as TEXT and as primary key.
+item_desc as TEXT.
+rate as INTEGER.
+icom_id as TEXT with a length of 4.
+icom_id is a foreign key referencing com_id in the company table.
+The foreign key should set NULL on updates and deletes.
+item_desc and rate should not accept NULL.
 
 ```sql
--- Paste your SQL code below for Question 5
+-CREATE TABLE item(
+    item_id TEXT primary key,
+    item_desc TEXT NOT NULL,
+    rate INTEGER NOT NULL,
+    icom_id TEXT CHAR (4),
+    FOREIGN KEY (icom_id) REFERENCES company (com_id)
+    ON UPDATE SET NULL
+    ON DELETE SET NULL
+);
 ```
 
 **Output:**
+<img width="1221" height="441" alt="image" src="https://github.com/user-attachments/assets/e64ee9b3-f49d-4d56-a9f5-cf7b391614bb" />
 
-![Output5](output.png)
 
 **Question 6**
 ---
--- Paste Question 6 here
+Insert all customers from Old_customers into Customers
 
+Table attributes are CustomerID, Name, Address, Email
 ```sql
--- Paste your SQL code below for Question 6
+INSERT INTO Customers
+SELECT CustomerID, Name, Address, Email FROM Old_customers;
 ```
 
 **Output:**
 
-![Output6](output.png)
+<img width="1207" height="381" alt="image" src="https://github.com/user-attachments/assets/bccccaa4-63bc-434f-b422-2a56acd6b9c7" />
+
 
 **Question 7**
 ---
--- Paste Question 7 here
+
+Insert the following products into the Products table:
+
+Name        Category     Price       Stock
+----------  -----------  ----------  ----------
+Smartphone  Electronics  800         150
+Headphones  Accessories  200         300
+
+
 
 ```sql
--- Paste your SQL code below for Question 7
+INSERT INTO Products (Name    ,    Category  ,   Price   ,    Stock)
+VALUES('Smartphone','Electronics',800,150),
+    ('Headphones','Accessories',200,300);
+
 ```
 
 **Output:**
 
-![Output7](output.png)
+
+<img width="1222" height="447" alt="image" src="https://github.com/user-attachments/assets/27648488-2b83-4cbd-a4b7-6188810ad6a2" />
+
 
 **Question 8**
 ---
--- Paste Question 8 here
+Create a table named Products with the following constraints:
+
+ProductID should be the primary key.
+ProductName should be NOT NULL.
+Price is of real datatype and should be greater than 0.
+Stock is of integer datatype and should be greater than or equal to 0.
 
 ```sql
--- Paste your SQL code below for Question 8
+CREATE TABLE Products(
+    ProductID primary key,
+    ProductName NOT NULL,
+    Price REAL CHECK(Price>0),
+    Stock INT CHECK(Stock>=0)
+);
 ```
 
 **Output:**
 
-![Output8](output.png)
+
+<img width="1225" height="379" alt="image" src="https://github.com/user-attachments/assets/d9fe3682-bc16-444a-b37a-ce41f2176644" />
+
 
 **Question 9**
 ---
--- Paste Question 9 here
+Create a table named Invoices with the following constraints:
 
+InvoiceID as INTEGER should be the primary key.
+InvoiceDate as DATE.
+DueDate as DATE should be greater than the InvoiceDate.
+Amount as REAL should be greater than 0.
 ```sql
--- Paste your SQL code below for Question 9
+CREATE TABLE Invoices(
+InvoiceID  INTEGER primary key,
+InvoiceDate DATE,
+DueDate DATE CHECK(Duedate>= InvoiceDate),
+Amount REAL CHECK(Amount>0)
+);
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="1218" height="365" alt="image" src="https://github.com/user-attachments/assets/631d90e3-b557-4a9f-9b99-a09a99f451ca" />
+
 
 **Question 10**
 ---
--- Paste Question 10 here
-
+Create a table named Shipments with the following constraints:
+ShipmentID as INTEGER should be the primary key.
+ShipmentDate as DATE.
+SupplierID as INTEGER should be a foreign key referencing Suppliers(SupplierID).
+OrderID as INTEGER should be a foreign key referencing Orders(OrderID).
 ```sql
--- Paste your SQL code below for Question 10
+CREATE TABLE Shipments(
+ShipmentID INTEGER primary key,
+ShipmentDate DATE,
+SupplierID INTEGER,
+OrderID INTEGER,
+FOREIGN KEY (SupplierID) REFERENCES Suppliers(SupplierID),
+FOREIGN KEY (OrderID) REFERENCES  Orders(OrderID)
+);
 ```
 
 **Output:**
 
-![Output10](output.png)
+
+<img width="1224" height="328" alt="image" src="https://github.com/user-attachments/assets/bbc77b48-8a8f-4e7a-872a-ddc4cf54724d" />
+
 
 
 ## RESULT
